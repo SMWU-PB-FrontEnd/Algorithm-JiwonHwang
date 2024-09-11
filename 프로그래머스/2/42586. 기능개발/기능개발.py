@@ -4,14 +4,15 @@ def solution(progresses, speeds):
     days = []
     for i, x in enumerate(progresses) :
         days.append(math.ceil((100-x)/speeds[i]))
-    count = 0
+        
+    count = 1
     answer = []
-    k = days[0]
-    for i in range(len(days)) :
-        if k < days[i] :
+    for i in range(len(days)-1) : 
+        if days[i+1] > days[i] :
             answer.append(count)
-            count = 0
-            k = days[i]
-        count += 1
+            count = 1
+        else :
+            days[i+1] = days[i]
+            count += 1
     answer.append(count)
     return answer
